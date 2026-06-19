@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Area Code Directory</title>
+    <meta charset="UTF-8">
+</head>
+<body>
+
+<h1>Area Code Directory</h1>
+
+<input type="text" id="search" placeholder="Search business or address">
+
+<div id="results"></div>
+
+<script>
+
+const data = [
+    {
+        code: "A123",
+        business: "ABC Plumbing",
+        address: "12 Main St"
+    },
+    {
+        code: "B456",
+        business: "Smith Bakery",
+        address: "45 Queen Rd"
+    },
+    {
+        code: "C789",
+        business: "",
+        address: "88 Industrial Ave"
+    }
+];
+
+const searchBox = document.getElementById("search");
+const results = document.getElementById("results");
+
+searchBox.addEventListener("input", function() {
+
+    const searchText = this.value.toLowerCase();
+
+    const matches = data.filter(item =>
+        item.business.toLowerCase().includes(searchText) ||
+        item.address.toLowerCase().includes(searchText)
+    );
+
+    results.innerHTML = "";
+
+    matches.forEach(item => {
+
+        const div = document.createElement("div");
+
+        div.innerHTML = `
+            <hr>
+            <strong>Code:</strong> ${item.code}<br>
+            <strong>Business:</strong> ${item.business || "(none)"}<br>
+            <strong>Address:</strong> ${item.address}
+        `;
+
+        results.appendChild(div);
+    });
+
+});
+
+</script>
+
+</body>
+</html>
