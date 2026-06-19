@@ -1,15 +1,44 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Test</title>
+    <title>Search Test</title>
 </head>
 <body>
 
-<h1>Test Page</h1>
+<h1>Search Test</h1>
 
-<button onclick="alert('JavaScript is working!')">
-    Click Me
-</button>
+<input id="search" placeholder="Type smith">
+
+<div id="results"></div>
+
+<script>
+
+const data = [
+    {
+        code: "B456",
+        business: "Smith Bakery",
+        address: "45 Queen Rd"
+    }
+];
+
+const searchBox = document.getElementById("search");
+const results = document.getElementById("results");
+
+searchBox.addEventListener("input", function() {
+
+    console.log("Typing detected");
+
+    const searchText = this.value.toLowerCase();
+
+    const matches = data.filter(item =>
+        item.business.toLowerCase().includes(searchText)
+    );
+
+    results.innerHTML = matches.length + " match(es)";
+
+});
+
+</script>
 
 </body>
 </html>
