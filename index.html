@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Area Code Directory</title>
+
+<style>
+body{
+    font-family: Arial, sans-serif;
+    max-width: 900px;
+    margin: auto;
+    padding: 20px;
+}
+
+h1{
+    text-align:center;
+}
+
+#search{
+    width:100%;
+    padding:12px;
+    font-size:18px;
+    box-sizing:border-box;
+}
+
+#status{
+    margin-top:10px;
+    color:#666;
+}
+
+.result{
+    border:1px solid #ddd;
+    border-radius:8px;
+    padding:12px;
+    margin-top:10px;
+}
+
+.code{
+    font-size:22px;
+    font-weight:bold;
+}
+
+.copy-btn{
+    margin-top:8px;
+    padding:6px 10px;
+    cursor:pointer;
+}
+</style>
+</head>
+<body>
+
+<h1>Area Code Directory</h1>
+
+<input
+    type="text"
+    id="search"
+    placeholder="Search code, business, or address..."
+>
+
+<div id="status">Loading data...</div>
+
+<div id="results"></div>
+
+<script>
+
+let data = [];
+
+function parseCSV(text){
+
+    const lines = text.trim().split(/\r?\n/);
+
+    const rows = [];
+
+    for(let i = 1; i < lines.length; i++){
+
+        const cols = lines[i].split(",");
+
+        rows.push({
+            code: cols[0] ? cols[0].trim() : "",
+            business: cols[1] ? cols[1].trim() : "",
+            address: cols[2] ? cols[2].trim() : ""
+        });
+    }
+
+    return rows;
+}
+
+function render(searchText = ""){
+
+    const q = searchText.toLowerCase();
+
+    const matches = data.filter(item =>
+        item.code.toLowerCase().includes(q) ||
+        item.business.toLowerCase().includes(q) ||
+        item.address.toLowerCase().includes(q)
+    );
+
+    document.getElementById("status").textContent =
+        `${matches.length} result(s)`;
+
+    const html = matches.map(item => `
+        <div class="result">
+            <div class="code">${item.code}</div>
+            <div><strong>Business:</strong> ${item.business || "(none)"}</div>
+            <div><strong>Address:</strong> ${item.address}</div>
+            <button class="copy-btn"
+                    onclick="navigator.clipboard.writeText('${item.code}')">
+                Copy Code
+            </button>
+        </div>
+    `).join("");
+
+    document.getElementById("results").innerHTML = html;
+}
+
+fetch("data.csv")
+    .then(response => response.text())
+    .then(csv => {
+
+        data = parseCSV(csv);
+
+        document
+            .getElementById("search")
+            .addEventListener("input", function(){
+                render(this.value);
+            });
+
+        render();
+    })
+    .catch(error => {
+        document.getElementById("status").textContent =
+            "Could not load data.csv";
+        console.error(error);
+    });
+
+</script>
+
+</body>
+</html>
