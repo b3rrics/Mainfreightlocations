@@ -1,13 +1,52 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Search Test</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<title>Area Code Directory</title>
+
+<style>
+body {
+    font-family: Arial, sans-serif;
+    max-width: 900px;
+    margin: auto;
+    padding: 20px;
+}
+
+h1 {
+    text-align: center;
+}
+
+#search {
+    width: 100%;
+    padding: 12px;
+    font-size: 18px;
+    box-sizing: border-box;
+}
+
+.result {
+    border: 1px solid #ddd;
+    padding: 12px;
+    margin-top: 10px;
+    border-radius: 5px;
+}
+
+.code {
+    font-size: 20px;
+    font-weight: bold;
+}
+</style>
 </head>
+
 <body>
 
-<h1>Search Test</h1>
+<h1>Area Code Directory</h1>
 
-<input id="search" placeholder="Type smith">
+<input
+    id="search"
+    type="text"
+    placeholder="Search code, business, or address">
 
 <div id="results"></div>
 
@@ -15,28 +54,57 @@
 
 const data = [
     {
+        code: "A123",
+        business: "ABC Plumbing",
+        address: "12 Main St"
+    },
+    {
         code: "B456",
         business: "Smith Bakery",
         address: "45 Queen Rd"
+    },
+    {
+        code: "C789",
+        business: "",
+        address: "88 Industrial Ave"
     }
 ];
 
 const searchBox = document.getElementById("search");
-const results = document.getElementById("results");
+const resultsDiv = document.getElementById("results");
 
-searchBox.addEventListener("input", function() {
+function displayResults(searchText = "") {
 
-    console.log("Typing detected");
-
-    const searchText = this.value.toLowerCase();
+    const search = searchText.toLowerCase();
 
     const matches = data.filter(item =>
-        item.business.toLowerCase().includes(searchText)
+        item.code.toLowerCase().includes(search) ||
+        item.business.toLowerCase().includes(search) ||
+        item.address.toLowerCase().includes(search)
     );
 
-    results.innerHTML = matches.length + " match(es)";
+    resultsDiv.innerHTML = "";
 
+    matches.forEach(item => {
+
+        const result = document.createElement("div");
+        result.className = "result";
+
+        result.innerHTML = `
+            <div class="code">${item.code}</div>
+            <div><strong>Business:</strong> ${item.business || "(none)"}</div>
+            <div><strong>Address:</strong> ${item.address}</div>
+        `;
+
+        resultsDiv.appendChild(result);
+    });
+}
+
+searchBox.addEventListener("input", function() {
+    displayResults(this.value);
 });
+
+displayResults();
 
 </script>
 
