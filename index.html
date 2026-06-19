@@ -39,12 +39,7 @@ h1{
 .code{
     font-size:22px;
     font-weight:bold;
-}
 
-.copy-btn{
-    margin-top:8px;
-    padding:6px 10px;
-    cursor:pointer;
 }
 </style>
 </head>
@@ -104,10 +99,6 @@ function render(searchText = ""){
             <div class="code">${item.code}</div>
             <div><strong>Business:</strong> ${item.business || "(none)"}</div>
             <div><strong>Address:</strong> ${item.address}</div>
-            <button class="copy-btn"
-                    onclick="navigator.clipboard.writeText('${item.code}')">
-                Copy Code
-            </button>
         </div>
     `).join("");
 
