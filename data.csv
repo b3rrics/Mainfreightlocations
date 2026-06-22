@@ -40,8 +40,8 @@ CITY,413 Anglesea Street,Liquorland Eastside (pallets only)
 CITY,Anzac Parade,
 CITY,Pemboke Street 65 lower (Cascades),
 CITY,Seddon Road,FMG Stadum  (rugby stadium)
-CITY,Tristram street,Harvey Norman Outlet
-CITY,Tristram street,Seddon Park H3 (Cricket Stadium)
+CITY,Tristram Street,Harvey Norman Outlet
+CITY,Tristram Street,Seddon Park H3 (Cricket Stadium)
 CRT,1052 Te Rapa road,Carters Te Rapa 
 DPT,107 Ruffell Road (old address 10 Tasman road),Mainfreight Depot 
 E10,41 Ruakura Road,Mitre 10 Ruakura
@@ -143,7 +143,7 @@ HUN,29 Innovation Way,Waikato Milking Systems
 ITM,18 Crawford Street,Thomsons ITM 
 LBL,Foreman road,Labelmakers 
 M,Mill Street,PAK'nSAVE Mill street
-M10,Maahanga Drive,Mitre 10 Te Rapa
+M10,Maahanga Drive,Mitre 10
 PRO,100 Maui Street,Prolife Foods
 RAG,117 Mason Road,Thomsons ITM Whatawhata
 RAG,Hoe-O-Tainui,
@@ -206,7 +206,6 @@ T2,Te Rapa Road Evens,
 T2,Totara Dr,
 T2,Vickery Street,
 T2,10 Northpark Drive,Gael Switchgear
-T2,450/454 Te Rapa Road,Inghams Prestige/Mitsubishi/Hyundai/Honda
 T3,Bristol Pl,
 T3,Garnett Ave,
 T3,Ken Browne Dr,
