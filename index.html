@@ -22,6 +22,65 @@ h1{
     padding:12px;
     font-size:18px;
     box-sizing:border-box;
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 20px;
+    margin-bottom: 20px;
+    flex-wrap: wrap;
+}
+
+.title-section h1 {
+    margin: 0;
+}
+
+.subtitle {
+    margin-top: 5px;
+    color: #666;
+    font-size: 14px;
+}
+
+.button-group {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+}
+
+.action-btn {
+    background: #0066cc;
+    color: white;
+    text-decoration: none;
+    padding: 10px 14px;
+    border-radius: 8px;
+    font-weight: bold;
+    white-space: nowrap;
+}
+
+.action-btn:hover {
+    opacity: 0.9;
+}
+
+.action-btn.secondary {
+    background: #666;
+}
+
+@media (max-width: 700px) {
+
+    .header {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .button-group {
+        width: 100%;
+    }
+
+    .action-btn {
+        text-align: center;
+        flex: 1;
+    }
+}
 }
 
 #status{
@@ -45,7 +104,34 @@ h1{
 </head>
 <body>
 
-<h1>Mainfreight Locations</h1>
+<div class="header">
+
+    <div class="title-section">
+        <h1>Area Code Directory</h1>
+        <p class="subtitle">
+            Search by address or business name to find the area code.
+        </p>
+    </div>
+
+    <div class="button-group">
+
+        <a
+            href="https://docs.google.com/forms/d/e/1FAIpQLSe1MLz0yzOSOzVuJEavsqz7nAF37duz6eJ6nBia16YR_cdJQg/viewform?usp=publish-editor"
+            target="_blank"
+            class="action-btn">
+            Suggest a Location
+        </a>
+
+        <a
+            href="https://docs.google.com/forms/d/e/1FAIpQLSeTj30njPH5gdWFuIe1-0kx4wWdhvdjQBFR_6Ub8o_xWJ45Yg/viewform?usp=dialog"
+            target="_blank"
+            class="action-btn secondary">
+            Report an Error
+        </a>
+
+    </div>
+
+</div>
 
 <input
     type="text"
