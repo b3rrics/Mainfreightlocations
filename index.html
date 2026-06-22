@@ -186,7 +186,7 @@ function render(searchText = ""){
     const html = matches.map(item => `
         <div class="result">
             <div class="code">${item.code}</div>
-            <div><strong>Business:</strong> ${item.business || "(none)"}</div>
+            <div><strong>Business:</strong> ${item.business || ""}</div>
             <div><strong>Address:</strong> ${item.address}</div>
         </div>
     `).join("");
